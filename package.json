@@ -1,0 +1,22 @@
+{
+  "name": "minimal-http-framework",
+  "version": "1.0.0",
+  "description": "A lightweight, educational HTTP server and router built from scratch in Node.js.   Implements a middleware pipeline, parameterized routing (TODO), error handling, and body parsing—no Express or third‑party frameworks required.",
+  "main": "frameworkServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abdelrahmanSheref101/minimal-http-framework.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/abdelrahmanSheref101/minimal-http-framework/issues"
+  },
+  "homepage": "https://github.com/abdelrahmanSheref101/minimal-http-framework#readme"
+}

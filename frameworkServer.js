@@ -1,72 +1,8 @@
-const { error } = require("console");
-const http = require("http");
-const url = require("url");
+//
+import http from "http";
+import Server from "./server.js";
+import Router from "./router.js";
 
-class Server {
-        constructor() {
-                this.middlewares = [];
-        }
-
-        use(mWare) {
-                this.middlewares.push(mWare);
-        }
-
-        async run(req, res) {
-                let index = 0;
-                const next = async (err) => {
-                        if (err) return this.errorHandler(err);
-
-                        if (index >= this.middlewares.length) return;
-
-                        const middleware = this.middlewares[index++];
-
-                        try {
-                                await middleware(req, res, next);
-                        } catch (error) {
-                                next(error);
-                        }
-                };
-
-                next();
-        }
-
-        errorHandler(err) {
-                console.log("TODO:add error handling");
-                console.log(err.toString());
-        }
-}
-
-class Router {
-        constructor() {
-                this.routs = new Map();
-                this.paramRouts = new Map();
-        }
-
-        register(method, path, handler) {
-                //TODO: is it parameterised ? if yes pass to _registerParamRout
-                if (!this.routs.has(method)) this.routs.set(method, new Map());
-
-                this.routs.get(method).set(path, handler);
-        }
-
-        resolve(method, path) {
-                //TODO : if it's a parameterised ,  call _resolveParamRout
-                return this.routs.get(method)?.get(path);
-        }
-
-        hasTarget(method, path) {
-                //TODO : if it's a parameterised ,  call _hasParamTarget
-                //TODO : return if either the metod or the path is missing
-
-                if (!this.routs.has(method) || !this.routs.get(method).has(path))
-                        return false;
-                return true;
-        }
-
-        _registerParamRout(method, path, handler) { }
-
-        _resolveParamRout() { }
-}
 
 //middlewares defines////////////////////////////////////////////////
 const bodyParsing = async (req, res, next) => {
